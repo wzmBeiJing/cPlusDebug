@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hyperci1/cPlusDebug/c_plus.cpp
+iostream
+-
+algorithm
+-
+vector
+-
+iostream
+-
+vector
+-
+queue
+-
+
