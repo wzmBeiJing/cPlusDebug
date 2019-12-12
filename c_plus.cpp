@@ -142,6 +142,7 @@ int main(int argc, char* argv[])
     vector<vector<Point>> rss = s.bwlabel(n);
 
 	std::cout << "rss_size_:" << rss.size() << std::endl;
+	std::cout << "rss_size_:" << rss.size() << std::endl;
 
     return 0;
 }
