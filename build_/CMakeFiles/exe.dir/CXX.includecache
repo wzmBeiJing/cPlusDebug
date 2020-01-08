@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/hyperci1/cPlusDebug/CChain.cpp
+CChain.h
+/home/hyperci1/cPlusDebug/CChain.h
+limits.h
+/home/hyperci1/cPlusDebug/limits.h
+iostream
+-
+math.h
+-
+
+/home/hyperci1/cPlusDebug/CChain.h
+deque
+-
+vector
+-
+
 /home/hyperci1/cPlusDebug/c_plus.cpp
 iostream
 -
@@ -13,6 +29,8 @@ algorithm
 -
 vector
 -
+CChain.h
+/home/hyperci1/cPlusDebug/CChain.h
 iostream
 -
 vector

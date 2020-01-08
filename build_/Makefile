@@ -123,6 +123,33 @@ exe/fast:
 	$(MAKE) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/build
 .PHONY : exe/fast
 
+CChain.o: CChain.cpp.o
+
+.PHONY : CChain.o
+
+# target to build an object file
+CChain.cpp.o:
+	$(MAKE) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/CChain.cpp.o
+.PHONY : CChain.cpp.o
+
+CChain.i: CChain.cpp.i
+
+.PHONY : CChain.i
+
+# target to preprocess a source file
+CChain.cpp.i:
+	$(MAKE) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/CChain.cpp.i
+.PHONY : CChain.cpp.i
+
+CChain.s: CChain.cpp.s
+
+.PHONY : CChain.s
+
+# target to generate assembly for a file
+CChain.cpp.s:
+	$(MAKE) -f CMakeFiles/exe.dir/build.make CMakeFiles/exe.dir/CChain.cpp.s
+.PHONY : CChain.cpp.s
+
 c_plus.o: c_plus.cpp.o
 
 .PHONY : c_plus.o
@@ -159,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... exe"
+	@echo "... CChain.o"
+	@echo "... CChain.i"
+	@echo "... CChain.s"
 	@echo "... c_plus.o"
 	@echo "... c_plus.i"
 	@echo "... c_plus.s"

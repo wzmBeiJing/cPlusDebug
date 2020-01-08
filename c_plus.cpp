@@ -1,7 +1,43 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include "CChain.h"
+
 using namespace std;
+using namespace flight;
+
+CChainExtraction chain_extraction_;
+
+int checkChain(pose_s &pose)
+	{
+		//Update Chain List & Detect Loop
+		//-1- Detect Loop
+		//-2- Check_Chain not empty, detect section
+		if (chain_extraction_.generateChain(pose) || chain_extraction_.recheckChain()) {
+			std::cout << "<----------- chain detect -------------->" << std::endl;
+
+			if (chain_extraction_.detectSectionChain()) {
+				std::cout << "--------the section chain detect----------!!" << std::endl;
+
+				if (chain_extraction_.isRealChain(pose)) {
+					// PX4_WARN("the section chain detect!!");
+					chain_extraction_.clearChainList();
+					return 2;  // section chain
+				}
+
+			} else {
+				//model_->stop();
+				// chain_extraction_.clearChainList();
+				chain_extraction_.clearCChain();
+				std::cout << "the island chian detect..." << std::endl;
+				return 0;
+			}
+		}
+
+		return 1;
+	}
+
+
 void print_ivec(vector<int>::iterator begin, vector<int>::iterator end)
 {
     for(;begin != end; ++begin)
@@ -124,7 +160,7 @@ int main(int argc, char* argv[])
 	
 	std::cout << "test((5&4)):" << (5&4) << std::endl;*/
 
-	vector<vector<int>> m = {
+	/*vector<vector<int>> m = {
         {1,1,0,0,0},
         {1,0,1,0,0},
         {0,1,1,0,0},
@@ -143,6 +179,37 @@ int main(int argc, char* argv[])
 
 	std::cout << "rss_size_:" << rss.size() << std::endl;
 	std::cout << "rss_size_:" << rss.size() << std::endl;
+
+	std::vector<int> a;
+	a.push_back(1);
+	a.pop_back();
+
+	std::cout << "a.size:" << a.size() << std::endl;*/
+	
+	std::vector<pose_s> v_pose_;
+	v_pose_.push_back(pose_s(0,0,0));
+	v_pose_.push_back(pose_s(0.5,0,0));
+	v_pose_.push_back(pose_s(1.0,0,0));
+	v_pose_.push_back(pose_s(1.0,-0.5,0));
+	v_pose_.push_back(pose_s(1.0,-1.0,0));
+	v_pose_.push_back(pose_s(1.0,-1.5,0));
+	v_pose_.push_back(pose_s(1.5,-1.5,0));
+	v_pose_.push_back(pose_s(1.5,-2.0,0));
+	v_pose_.push_back(pose_s(1.5,-2.5,0));
+	v_pose_.push_back(pose_s(1.0,-2.5,0));
+	v_pose_.push_back(pose_s(0.5,-2.5,0));
+	v_pose_.push_back(pose_s(0,-2.5,0));
+	v_pose_.push_back(pose_s(0,-2.0,0));
+	v_pose_.push_back(pose_s(0,-1.5,0));
+	v_pose_.push_back(pose_s(0,-1.0,0));
+	v_pose_.push_back(pose_s(0,-0.5,0));
+	v_pose_.push_back(pose_s(0,0,0));
+
+	for(int i = 0;i < v_pose_.size();i++){
+		std::cout << "i:" << i << std::endl;
+		int res = checkChain(v_pose_[i]);	
+		std::cout << "res:" << res << std::endl;
+	}
 
     return 0;
 }
