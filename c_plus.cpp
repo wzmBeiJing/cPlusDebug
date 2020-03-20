@@ -3,6 +3,8 @@
 #include<vector>
 #include "CChain.h"
 
+#define M_PI 3.1415926
+
 using namespace std;
 using namespace flight;
 
@@ -43,6 +45,17 @@ void print_ivec(vector<int>::iterator begin, vector<int>::iterator end)
     for(;begin != end; ++begin)
         cout << *begin << '\t';
     cout << endl;
+}
+
+double wrapAngle(double a)
+{
+	a = fmod(a + M_PI, 2 * M_PI);
+
+	if (a < 0.0) {
+		a += 2.0 * M_PI;
+	}
+
+	return a - M_PI;
 }
 
 #include <iostream>
@@ -211,5 +224,30 @@ int main(int argc, char* argv[])
 		std::cout << "res:" << res << std::endl;
 	}
 
-    return 0;
+
+	if(true){
+		int a = 1;
+		std::cout << "ai_1:" << a << std::endl;
+		if(true){
+			int a = 2;
+			std::cout << "a_2:" << a << std::endl;
+			if(true){
+				int a = 3;
+				std::cout << "a_3:" << a << std::endl;
+			}
+		}
+	}
+
+#define a
+
+#if defined (a)
+
+std::cout << "a" << std::endl;
+#endif
+
+double res = wrapAngle(1.56);	
+
+printf("res:%f",res);
+	    
+	return 0;
 }
