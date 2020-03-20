@@ -248,6 +248,7 @@ std::cout << "a" << std::endl;
 double res = wrapAngle(1.56);	
 
 printf("res:%f",res);
+std::cout << "b" << std::endl;
 	    
 	return 0;
 }
