@@ -133,6 +133,13 @@ public:
     }
 };
 
+void updateVecPose(std::vector<pose_s> &vec){
+		vec.clear();
+		vec.push_back(pose_s(1,1,0));
+		vec.push_back(pose_s(2,2,0));
+		vec.push_back(pose_s(3,3,0));
+		vec.push_back(pose_s(4,4,0));
+}
 
 int main(int argc, char* argv[])
 {
@@ -217,7 +224,10 @@ int main(int argc, char* argv[])
 	v_pose_.push_back(pose_s(0,-1.0,0));
 	v_pose_.push_back(pose_s(0,-0.5,0));
 	v_pose_.push_back(pose_s(0,0,0));
-
+	
+	//updateVecPose(v_pose_);
+	//std::cout << "v_pose_size:" << v_pose_.size() << std::endl;
+	
 	for(int i = 0;i < v_pose_.size();i++){
 		std::cout << "i:" << i << std::endl;
 		int res = checkChain(v_pose_[i]);	
@@ -247,7 +257,7 @@ std::cout << "a" << std::endl;
 
 double res = wrapAngle(1.56);	
 
-printf("res:%f",res);
-	    
+printf("res:%f\n",res);
+printf("VERSION:%s\n",VERSION);		    
 	return 0;
 }

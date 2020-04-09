@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS =   -std=gnu++11
 
-CXX_DEFINES = -D__PX4_POSIX_SITL_SIMULATE
+CXX_DEFINES = -DVERSION="\"2020-04-09 14:46\"" -D__PX4_POSIX_SITL_SIMULATE
 
 CXX_INCLUDES = -I/opt/ros/kinetic/include/opencv-3.3.1-dev -I/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv 
 

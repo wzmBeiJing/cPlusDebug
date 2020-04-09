@@ -11,6 +11,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "VERSION=\"2020-04-09 14:46\""
   "__PX4_POSIX_SITL_SIMULATE"
   )
 
