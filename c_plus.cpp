@@ -259,6 +259,5 @@ double res = wrapAngle(1.56);
 
 printf("res:%f\n",res);
 printf("VERSION:%s\n",VERSION);		    
-printf("debug git branch --set-upstream-to:%s\n",VERSION);		    
 	return 0;
 }
