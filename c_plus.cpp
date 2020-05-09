@@ -2,6 +2,7 @@
 #include<algorithm>
 #include<vector>
 #include "CChain.h"
+#include <stdint.h>
 
 #define M_PI 3.1415926
 
@@ -258,6 +259,15 @@ std::cout << "a" << std::endl;
 double res = wrapAngle(1.56);	
 
 printf("res:%f\n",res);
-printf("VERSION:%s\n",VERSION);		    
+printf("VERSION:%s\n",VERSION);
+
+uint32_t at = 0x33332222;
+uint16_t *a_l = reinterpret_cast<uint16_t*>(&at);
+uint16_t al = *a_l;
+
+uint16_t ah = *(a_l + 1);
+
+printf("al:%X\n",al);		    
+printf("ah:%X\n",ah);		    
 	return 0;
 }

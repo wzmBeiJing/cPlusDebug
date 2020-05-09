@@ -31,6 +31,8 @@ vector
 -
 CChain.h
 /home/hyperci1/cPlusDebug/CChain.h
+stdint.h
+-
 iostream
 -
 vector
