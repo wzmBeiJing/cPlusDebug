@@ -73,6 +73,52 @@ struct Point
     Point(const Point& p) : r(p.r), c(p.c){}
 };
 
+class A{
+public:
+	int a_i_;
+	
+	A(int i);
+	~A();
+	
+	virtual void printf_func();	
+};
+
+A::A(int i){
+	std::cout << "constructor A" << std::endl;
+	a_i_ = i;
+}
+
+void A::printf_func(){
+	std::cout << "printf_func->a_i_:" << a_i_ << std::endl;
+}
+
+A::~A(){
+	std::cout << "deconstructor ~A" << std::endl;
+}
+
+class B : public A
+{
+	public:
+		int b_i_;
+
+		B(int i):A(i){
+			std::cout << "constructor B" << std::endl;
+			b_i_ = i;
+		}
+		
+		void printf_func();
+
+		~B();
+};
+
+void B::printf_func(){
+	std::cout << "printf_func->b_i_:" << b_i_ << std::endl;
+}
+	
+B::~B(){
+	std::cout << "deconstructor ~B" << std::endl;
+}
+
 class Solution
 {
 public:
@@ -253,21 +299,32 @@ int main(int argc, char* argv[])
 
 #if defined (a)
 
-std::cout << "a" << std::endl;
+	std::cout << "a" << std::endl;
 #endif
 
-double res = wrapAngle(1.56);	
+	double res = wrapAngle(1.56);	
 
-printf("res:%f\n",res);
-printf("VERSION:%s\n",VERSION);
+	printf("res:%f\n",res);
+	printf("VERSION:%s\n",VERSION);
 
-uint32_t at = 0x33332222;
-uint16_t *a_l = reinterpret_cast<uint16_t*>(&at);
-uint16_t al = *a_l;
+	uint32_t at = 0x33332222;
+	uint16_t *a_l = reinterpret_cast<uint16_t*>(&at);
+	uint16_t al = *a_l;
 
-uint16_t ah = *(a_l + 1);
+	uint16_t ah = *(a_l + 1);
 
-printf("al:%X\n",al);		    
-printf("ah:%X\n",ah);		    
+	printf("al:%X\n",al);		    
+	printf("ah:%X\n",ah);		   
+
+
+	A obj_a(2);
+	
+	B *ptr_b =  static_cast<B*>(&obj_a);
+
+	//ptr_a->printf_func();
+	
+	std::cout << "ptr_b->a_i_:" << ptr_b->a_i_ << std::endl;
+	std::cout << "ptr_b->b_i_:" << ptr_b->b_i_ << std::endl;
+			
 	return 0;
 }
