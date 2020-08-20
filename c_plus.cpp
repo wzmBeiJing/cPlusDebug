@@ -73,6 +73,61 @@ struct Point
     Point(const Point& p) : r(p.r), c(p.c){}
 };
 
+struct A{
+public:
+	void * operator new(size_t size)
+	{
+		if(size == 0)  
+		size = 1;  
+		void *res;  
+		for(;;)  
+		{  
+		//allocate memory block  
+		res = malloc(size);  
+		//if successful allocation, return pointer to memory  
+		if(res)  
+			break;  
+		//call installed new handler  
+		}  
+		printf("new Override Flight size %d\r\n", size);
+		return res;  
+	}
+
+	void operator delete (void * pointer)
+	{
+		printf("delete %x\r\n", pointer);
+		free(pointer);
+	}
+	
+	int i;
+	A();
+	~A();
+};
+
+A::A(){
+	std::cout << "constructor A" << std::endl;
+}
+
+A::~A(){
+	std::cout << "deconstructor ~A" << std::endl;
+}
+
+struct B : public A
+{
+	public:
+		int b_i_;
+
+		B(int i)/*:A(i)*/{
+			std::cout << "constructor B" << std::endl;
+			b_i_ = i;
+		}
+		~B();
+};
+
+B::~B(){
+	std::cout << "deconstructor ~B" << std::endl;
+}
+
 class Solution
 {
 public:
@@ -141,6 +196,7 @@ void updateVecPose(std::vector<pose_s> &vec){
 		vec.push_back(pose_s(3,3,0));
 		vec.push_back(pose_s(4,4,0));
 }
+
 
 int main(int argc, char* argv[])
 {
@@ -253,21 +309,50 @@ int main(int argc, char* argv[])
 
 #if defined (a)
 
-std::cout << "a" << std::endl;
+	std::cout << "a" << std::endl;
 #endif
 
-double res = wrapAngle(1.56);	
+	double res = wrapAngle(1.56);	
 
-printf("res:%f\n",res);
-printf("VERSION:%s\n",VERSION);
+	printf("res:%f\n",res);
+	printf("VERSION:%s\n",VERSION);
 
-uint32_t at = 0x33332222;
-uint16_t *a_l = reinterpret_cast<uint16_t*>(&at);
-uint16_t al = *a_l;
+	uint32_t at = 0x33332222;
+	uint16_t *a_l = reinterpret_cast<uint16_t*>(&at);
+	uint16_t al = *a_l;
 
-uint16_t ah = *(a_l + 1);
+	uint16_t ah = *(a_l + 1);
 
-printf("al:%X\n",al);		    
-printf("ah:%X\n",ah);		    
+	printf("al:%X\n",al);		    
+	printf("ah:%X\n",ah);		   
+
+	B *ptr_b =  new B(1);
+	//A ptr_a(1);
+
+	for(int i = 0;i < 3;i++){
+		std::cout << "i" << std::endl;
+		for(int j = 0;j < 4;j++){
+			std::cout << "j" << std::endl;
+			if(j == 2)
+				break;
+		}
+
+	}
+	
+	std::vector<int> vec_obj;
+	vec_obj.push_back(1);
+	vec_obj.push_back(2);
+	vec_obj.push_back(3);
+
+	std::cout << "vec_obj_size:" << vec_obj.size() << std::endl;
+	
+	vec_obj.clear();
+	std::cout << "vec_obj_size:" << vec_obj.size() << std::endl;
+
+	uint8_t wzma = 255;
+	int8_t wzmb = (int8_t)wzma;
+
+	printf("wzmb:%d\n",wzmb);		
+	printf("wzma:%d\n",wzma);		
 	return 0;
 }
