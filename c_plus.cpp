@@ -259,5 +259,7 @@ double res = wrapAngle(1.56);
 
 printf("res:%f\n",res);
 printf("VERSION:%s\n",VERSION);		    
+printf("VERSION:%s\n",VERSION);		    
+
 	return 0;
 }
