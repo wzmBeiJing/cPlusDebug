@@ -113,24 +113,22 @@ bool CChainExtraction::updateChain()
 			std::cout << "get father_number:" << father_number << std::endl;
 
 			while ((father_number + 1 == index) && (++index < chain_list_.size())) {
-				 std::cout << "continue" << std::endl;
-
 				father_number = getFatherCell(index);
 				
-				std::cout << "get father_number:" << father_number << std::endl;
-				std::cout  << "index:" << index << std::endl;
+				std::cout  << "In_index:" << index << std::endl;
+				std::cout << "In_get father_number:" << father_number << std::endl;
 			}
 
 			// last_chain_size_ = father_number + 2;
 			// when Index >= chain_list_.size(), did not find father
 			if (index >= chain_list_.size()) {
+				std::cout << "index >= chain_list_.size()" << std::endl;
 				break;
 			}
 
 			//PX4_INFO(" get father_number %d index %d", father_number, index);
 			std::cout << "Close get father_number:" << father_number << std::endl;
 			std::cout << "Close index:" << index << std::endl;
-			
 			std::cout << "Close chain list size:" << chain_list_.size() << std::endl;
 
 			// check if close..
@@ -180,6 +178,7 @@ bool CChainExtraction::updateChainAndMap(int father_number, int index)
 	//  9      5
 	//    8 7 6
 	if ((index - father_number) > 7) { //10
+		std::cout << "index:" << index << "father_number:" << father_number << std::endl;
 		check_chain_.clear();
 
 		for (int i = father_number; i <= index; i++) {
@@ -494,7 +493,7 @@ bool CChainExtraction::detectSectionChain()
 			}
 		}
 
-	} else {
+	}else {
 		int middle = (min_idy + max_idy) / 2;
 
 		for (int i = 0; i < check_chain_.size(); i++) {
@@ -546,7 +545,7 @@ bool CChainExtraction::detectSectionChain()
 	}
 
 	//PX4_INFO("direc_count:%d",direc_count);
-	std::cout << "direc_count:" << direc_count << std::endl;
+	std::cout << "left:" << left << "right:" << right << "up:" << up << "down:" << down << "direc_count:" << direc_count << std::endl;
 
 	if (direc_count == 3)
 	{
@@ -600,8 +599,10 @@ void CChainExtraction::getPoseBounds(float &min_x, float &min_y, float &max_x, f
 
 void CChainExtraction::addUniqueElement(pose_s &pose)
 {
+	std::cout << "addUniqueElement" << std::endl;
 	int idx = x2idx(pose.x);
 	int idy = y2idx(pose.y);
+	std::cout << "idx:" << idx << "idy:" << idy << std::endl;
 	CChainCell cell(idx, idy, pose);
 	addUniqueElement(cell);
 }
@@ -656,11 +657,9 @@ void CChainExtraction::addChainCellDeque(pose_s &pose)
 			temp.y = y;
 			temp.theta = phi;
 
-			std::cout << "temp.x:" << temp.x << " temp.y:" << temp.y << std::endl;
-
 			CChainCell cell = xy2idx(temp);
 			
-			std::cout << "cell.idx:" << cell.idx_ << " cell.idy:" << cell.idy_ << std::endl;
+			std::cout << "temp.x:" << temp.x << " temp.y:" << temp.y << "cell.idx:" << cell.idx_ << " cell.idy:" << cell.idy_ << std::endl;
 			
 			addUniqueElement(cell);
 		}
@@ -774,7 +773,7 @@ void CChainExtraction::initialMap()
 	max_y_ = col_ * resolution_ + min_y_;
 	
 	//PX4_WARN("min_x_, min_y_, max_x_, max_y_, : %f, %f, %f, %f", min_x_, min_y_, max_x_, max_y_);
-	
+	std::cout << "min_x_:" << min_x_ << "min_y_:" << min_y_ << "max_x_:" << max_x_ << "max_y_:" << max_y_ << std::endl;  	
 	map_.clear();
 	map_.resize(row_ * col_, -1);
 }
